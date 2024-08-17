@@ -32,7 +32,8 @@ public class FriendlyProjectile : MonoBehaviour
          //collision.gameObject.GetComponent<EnemyStats>().TakeDamage(damage); 
          print("Hit!");
       }
-
-      Destroy(gameObject);
+      if (!collision.gameObject.CompareTag("Projectile") & !collision.gameObject.CompareTag("Player")) {
+         Destroy(gameObject);
+      }
    }
 }
