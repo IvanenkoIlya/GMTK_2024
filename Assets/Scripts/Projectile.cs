@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-   private GameObject player;
-   private Rigidbody2D rb;
+   protected GameObject player;
+   protected Rigidbody2D rb;
 
    public float movementSpeed = 1;
    public int damage = 1;
