@@ -29,6 +29,6 @@ public class Enemy : MonoBehaviour
    void ShootAtPlayer()
    {
       if(GameObject.FindWithTag("Player") != null)
-         Instantiate(projectile, bulletPos.position, Quaternion.identity, transform);
+         Instantiate(projectile, bulletPos.position, Quaternion.identity);
    }
 }
