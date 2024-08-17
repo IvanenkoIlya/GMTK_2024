@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-   public float maxHealth = 3;
+   Health health;
 
-   private float health;
+   private void Awake()
+   {
+      health = gameObject.GetComponent<Health>();
+      health.OnHit.AddListener(TakeDamage);
+   }
 
    // Start is called once before the first execution of Update after the MonoBehaviour is created
    void Start()
    {
-      health = maxHealth;
+      
    }
 
    // Update is called once per frame
@@ -17,14 +21,9 @@ public class Enemy : MonoBehaviour
    {
    }
 
-   public void TakeDamage(float dmg)
+   public void TakeDamage(Hit hit)
    {
-      health -= dmg;
-      health = Mathf.Clamp(health, 0, maxHealth);
-      if (health == 0)
-      {
+      if(health.CurrentHealth == 0)
          Destroy(gameObject);
-      }
    }
-
 }

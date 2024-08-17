@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChargingEnemy : MonoBehaviour
+public class ChargingEnemy : Enemy
 {
    public float SearchDistance = 5f;
    public float ChargeSpeed = 7f;
@@ -69,7 +69,6 @@ public class ChargingEnemy : MonoBehaviour
             break;
          case EnemyState.Charging:
             // Move towards player position
-            print("Time to charge!");
             transform.position = Vector3.MoveTowards(transform.position, chargePosition, ChargeSpeed * Time.deltaTime);
             if (Mathf.Abs((chargePosition - transform.position).magnitude) < 0.001f)
             {
@@ -79,7 +78,6 @@ public class ChargingEnemy : MonoBehaviour
             }
             break;
          case EnemyState.Recharging:
-            print("Recharging...");
             // Wait until cooldown
             rechargeTimer += Time.deltaTime;
             if (rechargeTimer > ChargeCooldown)

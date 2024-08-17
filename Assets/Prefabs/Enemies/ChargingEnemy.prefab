@@ -10,14 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3536184975684771352}
   - component: {fileID: 2935418382700246937}
-  - component: {fileID: 5093140087008793215}
-<<<<<<< HEAD:Assets/Prefabs/ChargingEnemy.prefab
-  - component: {fileID: 3849556078528895171}
-=======
-  - component: {fileID: 4717322959641965988}
   - component: {fileID: 8307156217430461144}
   - component: {fileID: 8247068877232365389}
->>>>>>> origin/main:Assets/Prefabs/Enemies/ChargingEnemy.prefab
+  - component: {fileID: 5093140087008793215}
+  - component: {fileID: -482216043774634774}
+  - component: {fileID: 351264217772918327}
   m_Layer: 0
   m_Name: ChargingEnemy
   m_TagString: Enemy
@@ -57,41 +54,6 @@ MonoBehaviour:
   x: 0
   y: 0
   waitTime: 0
---- !u!114 &5093140087008793215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889456873613665724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f81eac396e9434144902f984c9ce4034, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SearchDistance: 10
-  ChargeSpeed: 7
-  ChargeDelay: 1.5
-  ChargeCooldown: 1
-<<<<<<< HEAD:Assets/Prefabs/ChargingEnemy.prefab
-  ContactDamage: 1
-  KnockbackStrength: 20
-  KnockbackStunDelay: 0.15
---- !u!61 &3849556078528895171
-=======
---- !u!114 &4717322959641965988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889456873613665724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32806d453b0fe2449e1f0dfede6fc30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 3
 --- !u!50 &8307156217430461144
 Rigidbody2D:
   serializedVersion: 5
@@ -118,9 +80,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8247068877232365389
->>>>>>> origin/main:Assets/Prefabs/Enemies/ChargingEnemy.prefab
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,11 +115,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-<<<<<<< HEAD:Assets/Prefabs/ChargingEnemy.prefab
   m_Offset: {x: -0.06298828, y: 0.0037052333}
-=======
-  m_Offset: {x: 0, y: 0}
->>>>>>> origin/main:Assets/Prefabs/Enemies/ChargingEnemy.prefab
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -168,12 +125,103 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-<<<<<<< HEAD:Assets/Prefabs/ChargingEnemy.prefab
   m_Size: {x: 0.8147402, y: 0.9481272}
-=======
-  m_Size: {x: 1, y: 1}
->>>>>>> origin/main:Assets/Prefabs/Enemies/ChargingEnemy.prefab
   m_EdgeRadius: 0
+--- !u!114 &5093140087008793215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889456873613665724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f81eac396e9434144902f984c9ce4034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SearchDistance: 10
+  ChargeSpeed: 7
+  ChargeDelay: 1.5
+  ChargeCooldown: 1
+  ContactDamage: 1
+  KnockbackStrength: 20
+  KnockbackStunDelay: 0.15
+--- !u!114 &-482216043774634774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889456873613665724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a32040bea979fd43acae3a1fd4a8b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 5
+  MaxHealth: 5
+  MaxTotalHealth: 5
+  OnHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 351264217772918327}
+        m_TargetAssemblyTypeName: KnockbackFeedback, Assembly-CSharp
+        m_MethodName: ApplyKnockback
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &351264217772918327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889456873613665724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa5ed2d5df9cf914f91eec1bb850c251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8307156217430461144}
+  OnBegin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5093140087008793215}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDone:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5093140087008793215}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &5273514899728807964
 GameObject:
   m_ObjectHideFlags: 0

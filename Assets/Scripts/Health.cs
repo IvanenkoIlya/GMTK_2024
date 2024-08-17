@@ -45,4 +45,12 @@ public struct Hit
    public float KnockbackStrength;
    public Vector2 KnockbackDirection;
    public float KnockbackDelay;
+
+   public Hit(float damage)
+   {
+      Damage = damage;
+      KnockbackStrength = 1f;
+      KnockbackDirection = Vector2.zero;
+      KnockbackDelay = 0f;
+   }
 }
