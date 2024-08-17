@@ -35,6 +35,6 @@ public class Follower : MonoBehaviour
    void ShootAtEnemy()
    {
       if (GameObject.FindWithTag("Enemy") != null)
-         Instantiate(projectile, bulletPos.position, Quaternion.identity, transform);
+         Instantiate(projectile, bulletPos.position, Quaternion.identity);
    }
 }
