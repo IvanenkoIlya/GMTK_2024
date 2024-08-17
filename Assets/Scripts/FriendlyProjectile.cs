@@ -31,7 +31,7 @@ public class FriendlyProjectile : MonoBehaviour
       if (collision.gameObject.CompareTag("Enemy"))
       {
          //Implement enemy taking damage later
-         //collision.gameObject.GetComponent<EnemyStats>().TakeDamage(damage); 
+         collision.gameObject.GetComponent<Enemy>().TakeDamage(damage); 
          print("Hit!");
       }
       if (!collision.gameObject.CompareTag("Projectile") & !collision.gameObject.CompareTag("Player")) {
