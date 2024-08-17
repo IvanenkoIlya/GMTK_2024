@@ -1,9 +1,11 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class HealthBarUI : MonoBehaviour
 {
    public Sprite HalfHealth;
    public Sprite FullHealth;
+
 
    // Start is called once before the first execution of Update after the MonoBehaviour is created
    void Start()
@@ -22,12 +24,15 @@ public class HealthBarUI : MonoBehaviour
       print(health);
       for (int i = 0; i < health/2; i++ )
       {
-         Instantiate(FullHealth, transform.position + new Vector3(i*FullHealth.border.x, 0, 0), Quaternion.identity);
+         print("full heart");
+         //Add a full heart to the bar
       }
 
       if (health % 2 ==1)
       {
-         Instantiate(HalfHealth, transform.position + new Vector3(health / 2 * FullHealth.border.x, 0, 0), Quaternion.identity);
+         print("half heart");
+         //Add half a heart to the bar
       }
+      //Instantiate the whole bar as a game object?
    }
 }
