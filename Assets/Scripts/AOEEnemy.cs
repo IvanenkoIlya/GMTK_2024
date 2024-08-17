@@ -32,11 +32,9 @@ public class AOEEnemy : MonoBehaviour
             if (player != null && (player.transform.position - transform.position).magnitude < SearchDistance)
             {
                hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position);
-               print("Casting ray!");
 
                if (hit.collider != null && hit.collider.gameObject.tag == "Player")
                {
-                  print("Gotcha! Player hit, locking on.");
                   // TODO play a little animation/particle here
                   state = EnemyState.LockedOn;
                   lockTimer = 0;
@@ -46,7 +44,6 @@ public class AOEEnemy : MonoBehaviour
          case EnemyState.LockedOn:
             // Remain locked on until Charge delay
             hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position);
-            print("Lockon ray casting...");
             if (player != null &&
                (player.transform.position - transform.position).magnitude < SearchDistance &&
                hit.collider != null &&
@@ -54,7 +51,6 @@ public class AOEEnemy : MonoBehaviour
             {
                // Charge up
                lockTimer += Time.deltaTime;
-               print("Player hit, charging up! lockTimer is " + lockTimer);
                if (lockTimer > ChargeDelay)
                {
                   state = EnemyState.Charging;
@@ -63,7 +59,6 @@ public class AOEEnemy : MonoBehaviour
             }
             else
             {
-               print("Player not found, idling...");
                state = EnemyState.Idle;
             }
             break;
