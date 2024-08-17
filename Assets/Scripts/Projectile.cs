@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+   public GameObject collisionParticle;
+
    protected GameObject player;
    protected Rigidbody2D rb;
 
    public float movementSpeed = 1;
    public int damage = 1;
+
 
    // Start is called once before the first execution of Update after the MonoBehaviour is created
    void Start()
@@ -31,6 +34,7 @@ public class Projectile : MonoBehaviour
          collision.gameObject.GetComponent<PlayerStats>().TakeDamage(damage);
       }
       if (!collision.gameObject.CompareTag("Projectile") & !collision.gameObject.CompareTag("Enemy")) {
+         Instantiate(collisionParticle, this.transform.position, Quaternion.identity);
          Destroy(gameObject);
       }
    }

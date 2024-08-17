@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class FriendlyProjectile : MonoBehaviour
 {
+   public GameObject collisionParticle;
+
    protected GameObject enemy;
    protected Rigidbody2D rb;
 
@@ -33,6 +35,7 @@ public class FriendlyProjectile : MonoBehaviour
          print("Hit!");
       }
       if (!collision.gameObject.CompareTag("Projectile") & !collision.gameObject.CompareTag("Player")) {
+         Instantiate(collisionParticle, this.transform.position, Quaternion.identity);
          Destroy(gameObject);
       }
    }
