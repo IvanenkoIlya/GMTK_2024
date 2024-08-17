@@ -31,6 +31,16 @@ public class PlayerController : MonoBehaviour
       sprintAction = InputSystem.actions.FindAction("Sprint");
       rollAction = InputSystem.actions.FindAction("Roll");
       attackAction = InputSystem.actions.FindAction("Attack");
+      //attackAction.performed += (ctx) => {
+      //   print("attack");
+      //   gameObject.GetComponent<KnockbackFeedback>().ApplyKnockback(new Hit
+      //   {
+      //      Damage = 0,
+      //      KnockbackDirection = Vector2.left,
+      //      KnockbackStrength = 1,
+      //      KnockbackDelay = 0.15f
+      //   });
+      //}; 
       characterAnimator = GetComponentInChildren<Animator>();
    }
 
