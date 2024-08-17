@@ -32,9 +32,11 @@ public class AOEEnemy : MonoBehaviour
             if (player != null && (player.transform.position - transform.position).magnitude < SearchDistance)
             {
                hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position);
+               print("Casting ray!");
 
                if (hit.collider != null && hit.collider.gameObject.tag == "Player")
                {
+                  print("Gotcha! Player hit, locking on.");
                   // TODO play a little animation/particle here
                   state = EnemyState.LockedOn;
                   lockTimer = 0;
@@ -44,6 +46,7 @@ public class AOEEnemy : MonoBehaviour
          case EnemyState.LockedOn:
             // Remain locked on until Charge delay
             hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position);
+            print("Lockon ray casting...");
             if (player != null &&
                (player.transform.position - transform.position).magnitude < SearchDistance &&
                hit.collider != null &&
@@ -51,6 +54,7 @@ public class AOEEnemy : MonoBehaviour
             {
                // Charge up
                lockTimer += Time.deltaTime;
+               print("Player hit, charging up! lockTimer is " + lockTimer);
                if (lockTimer > ChargeDelay)
                {
                   state = EnemyState.Charging;
@@ -59,11 +63,13 @@ public class AOEEnemy : MonoBehaviour
             }
             else
             {
+               print("Player not found, idling...");
                state = EnemyState.Idle;
             }
             break;
          case EnemyState.Charging:
             // Move towards player position
+            print("Time to charge!");
             transform.position = Vector3.MoveTowards(transform.position, chargePosition, ChargeSpeed * Time.deltaTime);
             if (Mathf.Abs((chargePosition - transform.position).magnitude) < 0.001f)
             {
@@ -73,6 +79,7 @@ public class AOEEnemy : MonoBehaviour
             }
             break;
          case EnemyState.Recharging:
+            print("Recharging...");
             // Wait until cooldown
             rechargeTimer += Time.deltaTime;
             if (rechargeTimer > ChargeCooldown)

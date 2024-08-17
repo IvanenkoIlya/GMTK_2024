@@ -30,9 +30,7 @@ public class FriendlyProjectile : MonoBehaviour
    {
       if (collision.gameObject.CompareTag("Enemy"))
       {
-         //Implement enemy taking damage later
          collision.gameObject.GetComponent<Enemy>().TakeDamage(damage); 
-         print("Hit!");
       }
       if (!collision.gameObject.CompareTag("Projectile") & !collision.gameObject.CompareTag("Player")) {
          Instantiate(collisionParticle, this.transform.position, Quaternion.identity);
