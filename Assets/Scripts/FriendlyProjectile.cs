@@ -3,8 +3,8 @@ using UnityEngine;
 public class FriendlyProjectile : MonoBehaviour
 {
    public GameObject collisionParticle;
+   public GameObject target;
 
-   protected GameObject enemy;
    protected Rigidbody2D rb;
 
    public float movementSpeed = 1;
@@ -14,9 +14,8 @@ public class FriendlyProjectile : MonoBehaviour
    void Start()
    {
       rb = GetComponent<Rigidbody2D>();
-      enemy = GameObject.FindWithTag("Enemy");
 
-      Vector3 direction = enemy.transform.position - transform.position;
+      Vector3 direction = target.transform.position - transform.position;
       rb.linearVelocity = new Vector2(direction.x, direction.y).normalized * movementSpeed;
    }
 
