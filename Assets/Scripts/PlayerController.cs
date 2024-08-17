@@ -7,10 +7,9 @@ public class PlayerController : MonoBehaviour
    private Rigidbody2D rb;
    private Vector2 inputVector;
 
-   public int MaxHealth;
    public float movementSpeed = 5f;
    public float SprintModifier = 1.5f;
-   public GameObject HealthBarUI;
+
 
    InputAction moveAction;
    InputAction sprintAction;
@@ -22,9 +21,8 @@ public class PlayerController : MonoBehaviour
 
    void Awake()
    {
-      currentHealth = MaxHealth;
       rb = GetComponent<Rigidbody2D>();
-   }
+    }
 
    // Start is called once before the first execution of Update after the MonoBehaviour is created
    void Start()
@@ -41,15 +39,5 @@ public class PlayerController : MonoBehaviour
    {
       inputVector = moveAction.ReadValue<Vector2>().normalized;
       rb.linearVelocity = inputVector * movementSpeed * (sprintAction.IsPressed() ? SprintModifier : 1f);
-   }
-
-   public void Damage(int damage)
-   {
-      currentHealth -= damage;
-      HealthBarUI.GetComponent<HealthBarUI>().SetHealth(currentHealth);
-
-      if (currentHealth <= 0) { 
-         //Destroy(gameObject);
-      }
    }
 }
