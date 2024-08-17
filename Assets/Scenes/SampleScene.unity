@@ -2406,6 +2406,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2500,7 +2501,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2531,6 +2532,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd7ee1e764ff9b4c87f17fec2e60908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1138133610}
+  relativeCameraPos: 0.002
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3858,7 +3874,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 5
-  movementSpeed: {x: 10, y: 5}
+  movementSpeed: 5
+  SprintModifier: 1.5
   HealthBarUI: {fileID: 1318267873}
 --- !u!50 &1134633894
 Rigidbody2D:
@@ -3887,6 +3904,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &1134633895
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134633888}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f619791739917ae4b88a97ae9c2b18c6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1138133609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3952,7 +3991,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5272552499143439441, guid: cf6879ba03f6f5e4ab3ad5150b0ba076, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1134633894}
+    - targetCorrespondingSourceObject: {fileID: 5272552499143439441, guid: cf6879ba03f6f5e4ab3ad5150b0ba076, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1134633895}
   m_SourcePrefab: {fileID: 100100000, guid: cf6879ba03f6f5e4ab3ad5150b0ba076, type: 3}
+--- !u!4 &1138133610 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5272552499143439447, guid: cf6879ba03f6f5e4ab3ad5150b0ba076, type: 3}
+  m_PrefabInstance: {fileID: 1138133609}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1318267873
 GameObject:
   m_ObjectHideFlags: 0
@@ -4001,7 +4048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0262395774b9a304bb485456a2510ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  halfHealth: {fileID: 7990532601122359787, guid: 9a95d6ebaab64bf4ab0c6a617e9c55c2, type: 3}
+  HalfHealth: {fileID: 7990532601122359787, guid: 9a95d6ebaab64bf4ab0c6a617e9c55c2, type: 3}
   FullHealth: {fileID: 2350297403280568894, guid: 6d096590c20480145bb8d71d29a54212, type: 3}
 --- !u!1 &1320866838
 GameObject:
