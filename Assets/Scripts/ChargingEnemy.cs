@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class AOEEnemy : MonoBehaviour
+public class ChargingEnemy : MonoBehaviour
 {
    public float SearchDistance = 5f;
    public float ChargeSpeed = 7f;
    public float ChargeDelay = 1.3f;
    public float ChargeCooldown = 1f;
+   public float ContactDamage = 1f;
+   public float KnockbackStrength = 1f;
+   public float KnockbackStunDelay = 0.15f;
 
    private EnemyState state;
    private float lockTimer;
    private float rechargeTimer;
    private Vector3 chargePosition;
-
+   private Vector3 chargeDirection;
 
    // Start is called once before the first execution of Update after the MonoBehaviour is created
    void Start()
@@ -32,7 +35,7 @@ public class AOEEnemy : MonoBehaviour
             if (player != null && (player.transform.position - transform.position).magnitude < SearchDistance)
             {
                hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position);
-
+               
                if (hit.collider != null && hit.collider.gameObject.tag == "Player")
                {
                   // TODO play a little animation/particle here
@@ -44,6 +47,7 @@ public class AOEEnemy : MonoBehaviour
          case EnemyState.LockedOn:
             // Remain locked on until Charge delay
             hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position);
+
             if (player != null &&
                (player.transform.position - transform.position).magnitude < SearchDistance &&
                hit.collider != null &&
@@ -55,6 +59,7 @@ public class AOEEnemy : MonoBehaviour
                {
                   state = EnemyState.Charging;
                   chargePosition = player.transform.position;
+                  chargeDirection = chargePosition - transform.position;
                }
             }
             else
@@ -100,6 +105,20 @@ public class AOEEnemy : MonoBehaviour
 
       Gizmos.color = Color.red;
       Gizmos.DrawWireSphere(transform.position, SearchDistance);
+   }
+
+   private void OnCollisionEnter2D(Collision2D collision)
+   {
+      if (collision.gameObject.CompareTag("Player"))
+      {
+         collision.gameObject.GetComponent<Health>().TakeDamage(new Hit
+         {
+            Damage = ContactDamage,
+            KnockbackDirection = chargeDirection.normalized,
+            KnockbackStrength = KnockbackStrength,
+            KnockbackDelay = KnockbackStunDelay
+         });
+      }
    }
 
    private enum EnemyState
