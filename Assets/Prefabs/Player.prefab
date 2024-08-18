@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 1583203030947808129}
   - component: {fileID: 7074605194968246227}
   - component: {fileID: 5824043016778105979}
+  - component: {fileID: 2605082418767206906}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -353,7 +354,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 5
   MaxHealth: 5
-  MaxTotalHealth: 30
   OnHit:
     m_PersistentCalls:
       m_Calls:
@@ -370,6 +370,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMaxHealthChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &5824043016778105979
@@ -415,3 +421,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &2605082418767206906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8922757168915594472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e744c589efccec941bb9191cee2a060b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Followers: []

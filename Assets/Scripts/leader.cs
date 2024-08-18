@@ -1,18 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class leader : MonoBehaviour
+public class Leader : MonoBehaviour
 {
+   public List<GameObject> Followers = new List<GameObject>();
 
-   public GameObject FollowerAlly;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public void AssignFollower(GameObject follower)
+   {
+      Followers.Add(follower);
+   }
 }

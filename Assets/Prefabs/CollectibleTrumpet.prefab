@@ -175,6 +175,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89247bcd0e0b6c42bceefb6f947f24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowerSprite: {fileID: 21300000, guid: d2fcfa252cef1d643a4b490b6a832882, type: 3}
-  Follower: {fileID: 5928346433179514039, guid: eced8773fc903974cbed360c50e68d6f, type: 3}
-  FollowerTarget: {fileID: 0}
+  FollowerPrefab: {fileID: 5928346433179514039, guid: eced8773fc903974cbed360c50e68d6f, type: 3}
