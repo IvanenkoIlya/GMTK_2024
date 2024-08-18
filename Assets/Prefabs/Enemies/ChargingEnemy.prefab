@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1889456873613665724}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.55, y: -1.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -136,15 +136,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1889456873613665724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f81eac396e9434144902f984c9ce4034, type: 3}
+  m_Script: {fileID: 11500000, guid: f2416263be4d8f44e987176428fd57a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SearchDistance: 10
+  SearchDistance: 5
   ChargeSpeed: 7
-  ChargeDelay: 1.5
+  ChargeDelay: 1.3
   ChargeCooldown: 1
   ContactDamage: 1
-  KnockbackStrength: 20
+  KnockbackStrength: 1
   KnockbackStunDelay: 0.15
 --- !u!114 &-482216043774634774
 MonoBehaviour:

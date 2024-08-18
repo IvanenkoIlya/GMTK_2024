@@ -31,7 +31,7 @@ public class FriendlyProjectile : MonoBehaviour
       {
          collision.gameObject.GetComponent<Health>().TakeDamage(new Hit(damage));
       }
-      if (!collision.gameObject.CompareTag("Projectile") & !collision.gameObject.CompareTag("Player")) {
+      if (!collision.gameObject.CompareTag("Projectile") && !collision.gameObject.CompareTag("Player")) {
          Instantiate(collisionParticle, this.transform.position, Quaternion.identity);
          Destroy(gameObject);
       }

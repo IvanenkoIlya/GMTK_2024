@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviour
       {
          collision.gameObject.GetComponent<Health>().TakeDamage(new Hit(damage));
       }
-      if (!collision.gameObject.CompareTag("Projectile") & !collision.gameObject.CompareTag("Enemy")) {
+      if (!collision.gameObject.CompareTag("Projectile") && !collision.gameObject.CompareTag("Enemy")) {
          Instantiate(collisionParticle, this.transform.position, Quaternion.identity);
          Destroy(gameObject);
       }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour
+public class PlayerCameraController : MonoBehaviour
 {
    public Transform player;
    public float relativeCameraPos = 0.002f;
