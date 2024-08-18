@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class FriendlyProjectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
    public GameObject collisionParticle;
 
-   protected GameObject enemy;
+   protected GameObject player;
    protected Rigidbody2D rb;
 
    public float movementSpeed = 1;
@@ -14,9 +14,9 @@ public class FriendlyProjectile : MonoBehaviour
    void Start()
    {
       rb = GetComponent<Rigidbody2D>();
-      enemy = GameObject.FindWithTag("Enemy");
+      player = GameObject.FindWithTag("Player");
 
-      Vector3 direction = enemy.transform.position - transform.position;
+      Vector3 direction = player.transform.position - transform.position;
       rb.linearVelocity = new Vector2(direction.x, direction.y).normalized * movementSpeed;
    }
 
@@ -28,11 +28,11 @@ public class FriendlyProjectile : MonoBehaviour
 
    private void OnTriggerEnter2D(Collider2D collision)
    {
-      if (collision.gameObject.CompareTag("Enemy"))
+      if (collision.gameObject.CompareTag("Player"))
       {
          collision.gameObject.GetComponent<Health>().TakeDamage(new Hit(damage));
       }
-      if (!collision.gameObject.CompareTag("Projectile") & !collision.gameObject.CompareTag("Player")) {
+      if (!collision.gameObject.CompareTag("Projectile") && !collision.gameObject.CompareTag("Enemy")) {
          Instantiate(collisionParticle, this.transform.position, Quaternion.identity);
          Destroy(gameObject);
       }
