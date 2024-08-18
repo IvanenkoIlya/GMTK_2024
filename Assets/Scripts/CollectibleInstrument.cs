@@ -24,7 +24,15 @@ public class CollectibleInstrument : MonoBehaviour
       if (collision.gameObject.tag == "Player")
       {
          var temp = Instantiate(Follower, transform.position, Quaternion.identity);
+         var tempTarget = FollowerTarget.GetComponent<leader>().FollowerAlly;
+         //Attempting to get the follower chain to work
+         while (tempTarget != null)
+         {
+            FollowerTarget = FollowerTarget.GetComponent<leader>().FollowerAlly;
+            tempTarget = FollowerTarget.GetComponent<leader>().FollowerAlly;
+         }
          temp.GetComponent<Follower>().Target = FollowerTarget;
+         FollowerTarget.GetComponent<leader>().FollowerAlly = temp;
 
          Destroy(gameObject);
       }

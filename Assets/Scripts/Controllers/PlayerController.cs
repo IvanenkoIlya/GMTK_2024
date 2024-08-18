@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
    public float movementSpeed = 5f;
    public float SprintModifier = 1.5f;
 
-
    InputAction moveAction;
    InputAction sprintAction;
    InputAction rollAction;
