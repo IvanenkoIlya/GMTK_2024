@@ -1,40 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
    public GameObject collisionParticle;
-
-   protected GameObject player;
-   protected Rigidbody2D rb;
-
-   public float movementSpeed = 1;
-   public int damage = 1;
+   public Vector2 Direction;
+   public float ProjectileSpeed = 1f;
+   public float Damage = 0.5f;
+   public List<string> IgnoreTags = new List<string> { "Projectile" };
 
    // Start is called once before the first execution of Update after the MonoBehaviour is created
-   void Start()
+   protected virtual void Start()
    {
-      rb = GetComponent<Rigidbody2D>();
-      player = GameObject.FindWithTag("Player");
-
-      Vector3 direction = player.transform.position - transform.position;
-      rb.linearVelocity = new Vector2(direction.x, direction.y).normalized * movementSpeed;
+      GetComponent<Rigidbody2D>().linearVelocity = Direction * ProjectileSpeed;
    }
 
    // Update is called once per frame
-   void Update()
+   protected virtual void Update()
    {
 
    }
 
    private void OnTriggerEnter2D(Collider2D collision)
    {
-      if (collision.gameObject.CompareTag("Player"))
-      {
-         collision.gameObject.GetComponent<Health>().TakeDamage(new Hit(damage));
-      }
-      if (!collision.gameObject.CompareTag("Projectile") && !collision.gameObject.CompareTag("Enemy")) {
-         Instantiate(collisionParticle, this.transform.position, Quaternion.identity);
-         Destroy(gameObject);
-      }
+      if (IgnoreTags.Contains(collision.gameObject.tag))
+         return;
+      collision.gameObject.GetComponent<Health>()?.TakeDamage(new Hit(Damage));
+      Instantiate(collisionParticle, transform.position, Quaternion.identity);
+      Destroy(gameObject);
    }
 }

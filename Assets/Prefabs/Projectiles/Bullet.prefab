@@ -103,8 +103,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionParticle: {fileID: 650571518594944318, guid: 673b3f3f33fe3d94185220b8c3733c90, type: 3}
-  movementSpeed: 1
-  damage: 1
+  Direction: {x: 0, y: 0}
+  ProjectileSpeed: 5
+  Damage: 0.5
+  IgnoreTags:
+  - Projectile
 --- !u!50 &8027285334915882478
 Rigidbody2D:
   serializedVersion: 5

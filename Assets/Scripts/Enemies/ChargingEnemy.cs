@@ -1,29 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ChargingEnemy : Enemy
 {
-   public float SearchDistance = 5f;
+   [Header("Charging Enemy")]
    public float ChargeSpeed = 7f;
-   public float ChargeDelay = 1.3f;
+   public float ChargeUpTime = 1.3f;
    public float ChargeCooldown = 1f;
-   public float ContactDamage = 1f;
-   public float KnockbackStrength = 1f;
-   public float KnockbackStunDelay = 0.15f;
+   public float ChargeContactDamage = 1.5f;
+   public float ChargingKnockbackStrength = 20f;
+   public float ChargingKnockbackStunDelay = 0.15f;
+   public List<string> ChargeIgnoreCollisionTags = new List<string> { "Projectile", "Enemy" };
 
+   [SerializeField]
    private EnemyState state;
-   private float lockTimer;
+   private float lockOnTimer;
    private float rechargeTimer;
    private Vector3 chargePosition;
    private Vector3 chargeDirection;
 
    // Start is called once before the first execution of Update after the MonoBehaviour is created
-   void Start()
+   protected override void Start()
    {
-
+      base.Start();
    }
 
    // Update is called once per frame
-   void Update()
+   protected override void Update()
    {
       var player = GameObject.FindWithTag("Player");
       RaycastHit2D hit;
@@ -31,16 +34,19 @@ public class ChargingEnemy : Enemy
       switch (state)
       {
          case EnemyState.Idle:
+            base.Update();
+
             // Look for player within range
             if (player != null && (player.transform.position - transform.position).magnitude < SearchDistance)
             {
                hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position);
-               
+
                if (hit.collider != null && hit.collider.gameObject.tag == "Player")
                {
                   // TODO play a little animation/particle here
+                  // little puff of smoke
                   state = EnemyState.LockedOn;
-                  lockTimer = 0;
+                  lockOnTimer = 0;
                }
             }
             break;
@@ -54,8 +60,9 @@ public class ChargingEnemy : Enemy
                hit.collider.gameObject.tag == "Player")
             {
                // Charge up
-               lockTimer += Time.deltaTime;
-               if (lockTimer > ChargeDelay)
+               // TODO: scale up to indicate charging up
+               lockOnTimer += Time.deltaTime;
+               if (lockOnTimer > ChargeUpTime)
                {
                   state = EnemyState.Charging;
                   chargePosition = player.transform.position;
@@ -69,26 +76,27 @@ public class ChargingEnemy : Enemy
             break;
          case EnemyState.Charging:
             // Move towards player position
+            // TODO: reset scale
             transform.position = Vector3.MoveTowards(transform.position, chargePosition, ChargeSpeed * Time.deltaTime);
             if (Mathf.Abs((chargePosition - transform.position).magnitude) < 0.001f)
             {
-               // TODO create AOE?
+               // TODO: create AOE?
                state = EnemyState.Recharging;
-               rechargeTimer = 0;
+               rechargeTimer = ChargeCooldown;
             }
             break;
          case EnemyState.Recharging:
+            // TODO: little shake animation
+            agent.destination = transform.position;
             // Wait until cooldown
-            rechargeTimer += Time.deltaTime;
-            if (rechargeTimer > ChargeCooldown)
-            {
+            rechargeTimer = Mathf.Clamp(rechargeTimer - Time.deltaTime, 0, ChargeCooldown);
+            if (rechargeTimer <= 0)
                state = EnemyState.Idle;
-            }
             break;
       }
    }
 
-   private void OnDrawGizmos()
+   protected override void OnDrawGizmos()
    {
       var player = GameObject.FindWithTag("Player");
 
@@ -101,21 +109,43 @@ public class ChargingEnemy : Enemy
          Gizmos.DrawLine(transform.position, player.transform.position);
       }
 
-      Gizmos.color = Color.red;
-      Gizmos.DrawWireSphere(transform.position, SearchDistance);
+      base.OnDrawGizmos();
    }
 
-   private void OnCollisionEnter2D(Collision2D collision)
+   protected override void OnCollisionEnter2D(Collision2D collision)
    {
-      if (collision.gameObject.CompareTag("Player"))
+      if (ChargeIgnoreCollisionTags.Contains(collision.gameObject.tag))
+         return;
+
+      if(state == EnemyState.Charging)
       {
-         collision.gameObject.GetComponent<Health>().TakeDamage(new Hit
+         // TODO: create collision particles
+         state = EnemyState.Recharging;
+         rechargeTimer = ChargeCooldown;
+
+         if (collision.gameObject.CompareTag("Player"))
          {
-            Damage = ContactDamage,
-            KnockbackDirection = chargeDirection.normalized,
-            KnockbackStrength = KnockbackStrength,
-            KnockbackDelay = KnockbackStunDelay
-         });
+            collision.gameObject.GetComponent<Health>().TakeDamage(new Hit
+            {
+               Damage = ChargeContactDamage,
+               KnockbackDirection = chargeDirection.normalized,
+               KnockbackStrength = ChargingKnockbackStrength,
+               KnockbackDelay = ChargingKnockbackStunDelay
+            });
+
+            // Apply a bit of reverse knockback to self
+            gameObject.GetComponent<Health>().TakeDamage(new Hit
+            {
+               Damage = 0,
+               KnockbackDirection = -chargeDirection.normalized,
+               KnockbackStrength = 5f,
+               KnockbackDelay = ChargingKnockbackStunDelay
+            });
+         }
+      }
+      else
+      {
+         base.OnCollisionEnter2D(collision);
       }
    }
 
