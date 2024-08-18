@@ -3,23 +3,30 @@ using UnityEngine;
 public class CollectibleInstrument : MonoBehaviour
 {
    public Sprite FollowerSprite;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+   public GameObject Follower;
+   public GameObject FollowerTarget;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   // Start is called once before the first execution of Update after the MonoBehaviour is created
+   void Start()
+   {
 
-   private void OnTriggerEnter2D(Collider2D collision) {
+   }
+
+   // Update is called once per frame
+   void Update()
+   {
+
+   }
+
+   private void OnTriggerEnter2D(Collider2D collision)
+   {
+      print("Collided!");
       if (collision.gameObject.tag == "Player")
       {
-         var temp = Instantiate(Follower, transform, Quaternion.identity);
-         temp.GetComponent<Follower>()
+         var temp = Instantiate(Follower, transform.position, Quaternion.identity);
+         temp.GetComponent<Follower>().Target = FollowerTarget;
+
+         Destroy(gameObject);
       }
    }
 }
