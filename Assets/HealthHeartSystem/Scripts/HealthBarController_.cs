@@ -5,7 +5,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarController : MonoBehaviour
+public class HealthBarController_ : MonoBehaviour
 {
     private GameObject[] heartContainers;
     private Image[] heartFills;

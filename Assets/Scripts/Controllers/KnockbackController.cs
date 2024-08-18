@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class KnockbackFeedback : MonoBehaviour
+public class KnockbackController : MonoBehaviour
 {
    [SerializeField]
    private Rigidbody2D rb;
