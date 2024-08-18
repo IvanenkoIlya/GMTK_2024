@@ -4,10 +4,22 @@ namespace Assets.Scripts
 {
    public class HomingProjectile : Projectile
    {
-      private void Update()
+      private Rigidbody2D rb;
+      private GameObject target;
+
+      protected override void Start()
       {
-         Vector3 direction = player.transform.position - transform.position;
-         rb.linearVelocity = new Vector2(direction.x, direction.y).normalized * movementSpeed;
+         base.Start();
+         rb = GetComponent<Rigidbody2D>();
+      }
+
+      protected override void Update()
+      {
+         if(target != null)
+         {
+            Vector2 direction = (target.transform.position - transform.position).normalized;
+            rb.linearVelocity = direction * ProjectileSpeed;
+         }
       }
    }
 }
