@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ShootingEnemy : Enemy
 {
+   [Header("Shooting Enemy")]
    public GameObject Projectile;
    public Transform ProjectileOrigin;
    public float ShootCooldown = 2f;
@@ -9,9 +10,9 @@ public class ShootingEnemy : Enemy
    private float shootCooldownTimer;
 
    // Start is called once before the first execution of Update after the MonoBehaviour is created
-   void Start()
+   protected override void Start()
    {
-
+      base.Start();
    }
 
    // Update is called once per frame

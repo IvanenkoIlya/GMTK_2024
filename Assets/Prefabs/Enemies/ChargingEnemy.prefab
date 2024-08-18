@@ -80,7 +80,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &8247068877232365389
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -140,12 +140,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SearchDistance: 5
+  BaseContactDamage: 0.5
+  BaseKnockbackStrength: 20
+  BaseKnockbackStunDelay: 0.05
   ChargeSpeed: 7
-  ChargeDelay: 1.3
+  ChargeUpTime: 1.3
   ChargeCooldown: 1
-  ContactDamage: 1
-  KnockbackStrength: 1
-  KnockbackStunDelay: 0.15
+  ChargeContactDamage: 1.5
+  ChargingKnockbackStrength: 22
+  ChargineKnockbackStunDelay: 0.15
 --- !u!114 &-482216043774634774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 5
   MaxHealth: 5
-  MaxTotalHealth: 5
   OnHit:
     m_PersistentCalls:
       m_Calls:
@@ -177,6 +179,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   OnHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMaxHealthChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &351264217772918327

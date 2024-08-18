@@ -279,7 +279,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!61 &2100782046078071717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SearchDistance: 8
   BaseContactDamage: 0.5
-  BaseKnockbackStrength: 3
+  BaseKnockbackStrength: 20
   BaseKnockbackStunDelay: 0.05
   Projectile: {fileID: 3727197080649326441, guid: 1588daa958e589e4982312fcde6ca690, type: 3}
   ProjectileOrigin: {fileID: 6513775544518315843}
