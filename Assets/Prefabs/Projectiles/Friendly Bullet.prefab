@@ -166,5 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionParticle: {fileID: 650571518594944318, guid: 673b3f3f33fe3d94185220b8c3733c90, type: 3}
+  target: {fileID: 0}
   movementSpeed: 3
   damage: 1

@@ -18,8 +18,8 @@ public class CollectibleInstrument : MonoBehaviour
    private void OnTriggerEnter2D(Collider2D collision) {
       if (collision.gameObject.tag == "Player")
       {
-         var temp = Instantiate(Follower, transform, Quaternion.identity);
-         temp.GetComponent<Follower>()
+         //var temp = Instantiate(Follower, transform, Quaternion.identity);
+         //temp.GetComponent<Follower>()
       }
    }
 }
